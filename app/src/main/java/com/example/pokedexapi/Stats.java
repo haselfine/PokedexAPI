@@ -2,8 +2,9 @@ package com.example.pokedexapi;
 
 public class Stats {
 
-    int effort;
-    int baseStat;
+    public int effort;
+    public int base_stat;
+    public Stat stat;
 
     public int getEffort() {
         return effort;
@@ -13,19 +14,28 @@ public class Stats {
         this.effort = effort;
     }
 
-    public int getBaseStat() {
-        return baseStat;
+    public int getBase_stat() {
+        return base_stat;
     }
 
-    public void setBaseStat(int baseStat) {
-        this.baseStat = baseStat;
+    public void setBase_stat(int base_stat) {
+        this.base_stat = base_stat;
+    }
+
+    public Stat getStat() {
+        return stat;
+    }
+
+    public void setStat(Stat stat) {
+        this.stat = stat;
     }
 
     @Override
     public String toString() {
         return "Stats{" +
                 "effort=" + effort +
-                ", baseStat=" + baseStat +
+                ", base_stat=" + base_stat +
+                ", stat=" + stat +
                 '}';
     }
 }

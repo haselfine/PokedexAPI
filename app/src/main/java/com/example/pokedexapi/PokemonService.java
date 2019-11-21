@@ -9,6 +9,6 @@ public interface PokemonService {
     @GET("pokemon/{name}")
     Call<Pokemon> getPokemon(@Path("name") String name);
 
-    @GET("ability/{name}")
-    Call<Ability> getAbility(@Path("name") String name);
+    @GET("pokemon-species/{name}")
+    Call<PokemonSpecies> getPokemonSpecies(@Path("name") String name);
 }

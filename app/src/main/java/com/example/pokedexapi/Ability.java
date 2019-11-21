@@ -27,8 +27,10 @@ public class Ability
     }
 
     @Override
-    public String toString()
-    {
-        return "ClassPojo [name = "+name+", url = "+url+"]";
+    public String toString() {
+        return "Ability{" +
+                "name='" + name + '\'' +
+                ", url='" + url + '\'' +
+                '}';
     }
 }

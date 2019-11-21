@@ -1,13 +1,14 @@
 package com.example.pokedexapi;
 
+import java.util.Arrays;
+
 public class Pokemon {
 
     int id;
     String name;
-    Type[] types;
+    Types[] types;
     int height;
     int weight;
-    Ability[] abilities;
     Sprites sprites;
     Stats[] stats;
 
@@ -28,11 +29,11 @@ public class Pokemon {
         this.name = name;
     }
 
-    public Type[] getTypes() {
+    public Types[] getTypes() {
         return types;
     }
 
-    public void setTypes(Type[] types){
+    public void setTypes(Types[] types){
         this.types = types;
     }
 
@@ -53,14 +54,6 @@ public class Pokemon {
         this.weight = weight;
     }
 
-    public Ability[] getAbilities() {
-        return abilities;
-    }
-
-    public void setAbilities(Ability[] abilities){
-        this.abilities = abilities;
-    }
-
     public Sprites getSprites() {
         return sprites;
     }
@@ -78,11 +71,17 @@ public class Pokemon {
     }
 
     @Override
-    public String toString()
-    {
-        return "Pokemon [types = "+types+", weight = "+weight+", sprites = "+sprites+", abilities = "+abilities+", stats = "+stats+", name = "+name+", id = "+id+", height = "+height+"]";
+    public String toString() {
+        return "Pokemon{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", types=" + Arrays.toString(types) +
+                ", height=" + height +
+                ", weight=" + weight +
+                ", sprites=" + sprites +
+                ", stats=" + Arrays.toString(stats) +
+                '}';
     }
-
 }
 
 

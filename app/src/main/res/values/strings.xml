@@ -1,11 +1,18 @@
 <resources>
     <string name="app_name">PokedexAPI</string>
-    <string name="name">Name: %s</string>
-    <string name="description">Description: %s</string>
+    <string name="name">Name: </string>
+    <string name="description">Description: </string>
     <string name="stats">Stats</string>
-    <string name="height">Height: %s</string>
-    <string name="weight">Weight: %s</string>
-    <string name="abilities">Abilities: %s</string>
-    <string name="type">Type: %s</string>
+    <string name="height">Height: </string>
+    <string name="weight">Weight: </string>
+    <string name="abilities">Abilities: </string>
+    <string name="type">Type: </string>
     <string name="search_hint">Search for a Pokemon!</string>
+    <string name="hp">HP: </string>
+    <string name="attack">Attack: </string>
+    <string name="defense">Defense: </string>
+    <string name="spAttack">Sp. Atk: </string>
+    <string name="spDefense"> Sp. Def: </string>
+    <string name="speed">Speed: </string>
+    <string name="favorites">Favorites</string>
 </resources>

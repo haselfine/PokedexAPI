@@ -2,9 +2,9 @@ package com.example.pokedexapi;
 
 public class Types
 {
-    private String slot;
+    public String slot;
 
-    private Type type;
+    public Type type;
 
     @Override
     public String toString() {

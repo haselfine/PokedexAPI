@@ -2,8 +2,8 @@ package com.example.pokedexapi;
 
 public class Stat {
 
-    String name;
-    String url;
+    public String name;
+    public String url;
 
 
     public String getName() {

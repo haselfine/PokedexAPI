@@ -1,8 +1,9 @@
 package com.example.pokedexapi;
 
-public class Type {
-    public String name;
-    public String url;
+public class Growth_Rate {
+
+    String name;
+    String url;
 
     public String getName() {
         return name;
@@ -20,10 +21,9 @@ public class Type {
         this.url = url;
     }
 
-
     @Override
     public String toString() {
-        return "Type{" +
+        return "Growth_Rate{" +
                 "name='" + name + '\'' +
                 ", url='" + url + '\'' +
                 '}';

@@ -2,14 +2,14 @@ package com.example.pokedexapi;
 
 public class Sprites
 {
-    private String back_shiny_female;
-    private String back_female;
-    private String back_default;
-    private String front_shiny_female;
-    private String front_default;
-    private String front_female;
-    private String back_shiny;
-    private String front_shiny;
+    public String back_shiny_female;
+    public String back_female;
+    public String back_default;
+    public String front_shiny_female;
+    public String front_default;
+    public String front_female;
+    public String back_shiny;
+    public String front_shiny;
 
     public String getBack_shiny_female ()
     {

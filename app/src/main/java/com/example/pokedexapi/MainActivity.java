@@ -1,8 +1,10 @@
 package com.example.pokedexapi;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Window;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -40,7 +42,9 @@ public class MainActivity extends AppCompatActivity implements SearchBar.SearchB
         fm.beginTransaction()
                 .add(R.id.searchBar_container, searchBar, TAG_SEARCH)
                 .add(R.id.pokemon_display_container, pokemonDisplayFragment, TAG_DISPLAY)
+                .hide(pokemonDisplayFragment)
                 .commit();
+
 
         pokeRepo = new PokeRepo();
         pokeService = pokeRepo.pokeService;
@@ -52,6 +56,10 @@ public class MainActivity extends AppCompatActivity implements SearchBar.SearchB
     }
 
     public void getPokemonData(final String name){
+
+        InputMethodManager imm = (InputMethodManager) getApplicationContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+
         pokeService.getPokemon(name).enqueue(new Callback<Pokemon>() {
             @Override
             public void onResponse(Call<Pokemon> call, Response<Pokemon> response) {
@@ -61,8 +69,34 @@ public class MainActivity extends AppCompatActivity implements SearchBar.SearchB
                 if(pokeResponse != null){
                     FragmentManager fm = getSupportFragmentManager();
                     PokemonDisplayFragment pokemonDisplayFragment = (PokemonDisplayFragment) fm.findFragmentByTag(TAG_DISPLAY);
+                    fm.beginTransaction().show(pokemonDisplayFragment).commit();
 
                     pokemonDisplayFragment.setAttributes(pokeResponse);
+
+                } else {
+                    Log.d(TAG, "Search for " + name + " did not return results");
+                    Toast.makeText(getApplicationContext(), "Pokemon not found. Check spelling.", Toast.LENGTH_LONG).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Pokemon> call, Throwable t) {
+                Log.e(TAG, "Error fetching Pokemon", t);
+                Toast.makeText(MainActivity.this, "Unable to fetch Pokemon", Toast.LENGTH_LONG).show();
+            }
+        });
+
+        pokeService.getPokemonSpecies(name).enqueue(new Callback<PokemonSpecies>() {
+            @Override
+            public void onResponse(Call<PokemonSpecies> call, Response<PokemonSpecies> response) {
+                PokemonSpecies speciesResponse = response.body();
+                Log.d(TAG, "Pokemon response: " + speciesResponse);
+
+                if(speciesResponse != null){
+                    FragmentManager fm = getSupportFragmentManager();
+                    PokemonDisplayFragment pokemonDisplayFragment = (PokemonDisplayFragment) fm.findFragmentByTag(TAG_DISPLAY);
+
+                    pokemonDisplayFragment.setAttributes(speciesResponse);
 
                 } else {
                     Log.d(TAG, "Search for " + name + " did not return results");
@@ -70,7 +104,7 @@ public class MainActivity extends AppCompatActivity implements SearchBar.SearchB
             }
 
             @Override
-            public void onFailure(Call<Pokemon> call, Throwable t) {
+            public void onFailure(Call<PokemonSpecies> call, Throwable t) {
                 Log.e(TAG, "Error fetching Pokemon", t);
                 Toast.makeText(MainActivity.this, "Unable to fetch Pokemon", Toast.LENGTH_LONG).show();
             }

@@ -1,9 +1,9 @@
 package com.example.pokedexapi;
 
 public class Abilities {
-    int slot;
-    boolean is_hidden;
-    Ability ability;
+    public int slot;
+    public boolean is_hidden;
+    public Ability ability;
 
     public int getSlot() {
         return slot;
@@ -21,9 +21,13 @@ public class Abilities {
         is_hidden = hidden;
     }
 
+
     @Override
-    public String toString()
-    {
-        return "ClassPojo [is_hidden = "+is_hidden+", slot = "+slot+", ability = "+ability+"]";
+    public String toString() {
+        return "Abilities{" +
+                "slot=" + slot +
+                ", is_hidden=" + is_hidden +
+                ", ability=" + ability +
+                '}';
     }
 }
