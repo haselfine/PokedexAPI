@@ -1,8 +1,8 @@
-package com.example.pokedexapi;
+package com.example.pokedexapi.Model;
 
-public class Language {
-    String name;
-    String url;
+public class Type {
+    public String name;
+    public String url;
 
     public String getName() {
         return name;
@@ -20,9 +20,10 @@ public class Language {
         this.url = url;
     }
 
+
     @Override
     public String toString() {
-        return "Language{" +
+        return "Type{" +
                 "name='" + name + '\'' +
                 ", url='" + url + '\'' +
                 '}';

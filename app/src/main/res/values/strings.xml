@@ -15,4 +15,6 @@
     <string name="spDefense"> Sp. Def: </string>
     <string name="speed">Speed: </string>
     <string name="favorites">Favorites</string>
+    <string name="date">Date created: </string>
+    <string name="delete_favorite_message">Are you sure you want to delete %s?</string>
 </resources>

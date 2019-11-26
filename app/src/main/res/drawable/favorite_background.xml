@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <solid android:color="@color/favorite_list_item_background"/>
+    <stroke android:width="@dimen/list_item_favorite_margin"
+        android:color="@color/favorite_list_item_background"
+        />
+    <padding android:left="@dimen/list_item_favorite_padding"
+        android:top="@dimen/list_item_favorite_padding"
+        android:bottom="@dimen/list_item_favorite_padding"
+        android:right="@dimen/list_item_favorite_padding"
+        />
+
+    <corners android:bottomRightRadius="@dimen/list_item_favorite_margin"
+        android:bottomLeftRadius="@dimen/list_item_favorite_margin"
+        android:topLeftRadius="@dimen/list_item_favorite_margin"
+        android:topRightRadius="@dimen/list_item_favorite_margin"
+        />
+</shape>

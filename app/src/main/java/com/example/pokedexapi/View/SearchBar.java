@@ -1,12 +1,8 @@
-package com.example.pokedexapi;
+package com.example.pokedexapi.View;
 
 
 import android.content.Context;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +10,11 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+
+import com.example.pokedexapi.R;
 
 
 /**
@@ -23,12 +24,14 @@ public class SearchBar extends Fragment implements View.OnClickListener {
 
     EditText searchET;
     Button searchBtn;
+    Button favoritesBtn;
     String mPokemonName;
 
     private static final String TAG = "SEARCH BAR FRAG";
 
     interface SearchBarListener{
         void searchForPokemon(String name);
+        void onFavoriteClick();
     }
 
     public static SearchBar newInstance() {
@@ -60,20 +63,30 @@ public class SearchBar extends Fragment implements View.OnClickListener {
 
         searchET = view.findViewById(R.id.search_EditText);
         searchBtn = view.findViewById(R.id.search_Button);
-
         searchBtn.setOnClickListener(this);
+        favoritesBtn = view.findViewById(R.id.favorites_button);
+        favoritesBtn.setOnClickListener(this);
 
         return view;
     }
     @Override
     public void onClick(View v) {
-        mPokemonName = searchET.getText().toString();
-        if(mPokemonName.isEmpty()){
-            Toast.makeText(getContext(), "Enter a Pokemon name", Toast.LENGTH_LONG).show();
-            return;
+        int button = v.getId();
+        switch (button){
+            case R.id.search_Button:
+                mPokemonName = searchET.getText().toString();
+                if(mPokemonName.isEmpty()){
+                    Toast.makeText(getContext(), "Enter a Pokemon name", Toast.LENGTH_LONG).show();
+                    return;
+                }
+                mPokemonName = mPokemonName.toLowerCase();
+                mSearchListener.searchForPokemon(mPokemonName);
+                break;
+            case R.id.favorites_button:
+                mSearchListener.onFavoriteClick();
+                break;
         }
-        mPokemonName = mPokemonName.toLowerCase();
-        mSearchListener.searchForPokemon(mPokemonName);
+
     }
 
 }

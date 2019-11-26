@@ -1,4 +1,7 @@
-package com.example.pokedexapi;
+package com.example.pokedexapi.Service;
+
+import com.example.pokedexapi.Model.Pokemon;
+import com.example.pokedexapi.Model.PokemonSpecies;
 
 import retrofit2.Call;
 import retrofit2.http.GET;

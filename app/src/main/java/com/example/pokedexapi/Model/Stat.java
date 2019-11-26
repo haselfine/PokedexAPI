@@ -1,9 +1,10 @@
-package com.example.pokedexapi;
+package com.example.pokedexapi.Model;
 
-public class Growth_Rate {
+public class Stat {
 
-    String name;
-    String url;
+    public String name;
+    public String url;
+
 
     public String getName() {
         return name;
@@ -23,7 +24,7 @@ public class Growth_Rate {
 
     @Override
     public String toString() {
-        return "Growth_Rate{" +
+        return "Stat{" +
                 "name='" + name + '\'' +
                 ", url='" + url + '\'' +
                 '}';

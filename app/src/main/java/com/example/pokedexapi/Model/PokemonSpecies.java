@@ -1,11 +1,12 @@
-package com.example.pokedexapi;
+package com.example.pokedexapi.Model;
 
 import java.util.Arrays;
 
 public class PokemonSpecies {
 
-    Flavor_Text_Entries[] flavor_text_entries;
-    Growth_Rate growth_rate;
+    public Flavor_Text_Entries[] flavor_text_entries;
+    public Growth_Rate growth_rate;
+    public Color color;
 
     public Flavor_Text_Entries[] getFlavor_text_entries() {
         return flavor_text_entries;
@@ -23,11 +24,20 @@ public class PokemonSpecies {
         this.growth_rate = growth_rate;
     }
 
+    public Color getColor() {
+        return color;
+    }
+
+    public void setColor(Color color) {
+        this.color = color;
+    }
+
     @Override
     public String toString() {
         return "PokemonSpecies{" +
                 "flavor_text_entries=" + Arrays.toString(flavor_text_entries) +
                 ", growth_rate=" + growth_rate +
+                ", color=" + color +
                 '}';
     }
 }

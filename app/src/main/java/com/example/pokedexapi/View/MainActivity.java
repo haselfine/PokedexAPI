@@ -1,4 +1,4 @@
-package com.example.pokedexapi;
+package com.example.pokedexapi.View;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -9,6 +9,13 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+
+import com.example.pokedexapi.Model.Pokemon;
+import com.example.pokedexapi.Model.PokemonSpecies;
+import com.example.pokedexapi.R;
+import com.example.pokedexapi.Repository.PokeRepo;
+import com.example.pokedexapi.Service.PokemonService;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -18,6 +25,7 @@ public class MainActivity extends AppCompatActivity implements SearchBar.SearchB
 
     private static final String TAG_DISPLAY = "DISPLAY";
     private static final String TAG_SEARCH = "SEARCH";
+    private static final String TAG_FAVORITE = "FAVORITE";
     private static final String TAG = "Main activity";
 
     PokemonService pokeService;
@@ -37,13 +45,12 @@ public class MainActivity extends AppCompatActivity implements SearchBar.SearchB
         PokemonDisplayFragment pokemonDisplayFragment = PokemonDisplayFragment.newInstance();
 
 
-
         FragmentManager fm = getSupportFragmentManager();
-        fm.beginTransaction()
-                .add(R.id.searchBar_container, searchBar, TAG_SEARCH)
-                .add(R.id.pokemon_display_container, pokemonDisplayFragment, TAG_DISPLAY)
-                .hide(pokemonDisplayFragment)
-                .commit();
+        FragmentTransaction ft = fm.beginTransaction();
+        ft.add(R.id.searchBar_container, searchBar, TAG_SEARCH);
+        ft.add(R.id.pokemon_display_container, pokemonDisplayFragment, TAG_DISPLAY);
+        ft.hide(pokemonDisplayFragment);
+        ft.commit();
 
 
         pokeRepo = new PokeRepo();
@@ -55,10 +62,21 @@ public class MainActivity extends AppCompatActivity implements SearchBar.SearchB
         getPokemonData(name);
     }
 
+    @Override
+    public void onFavoriteClick(){
+
+        FragmentManager fm = getSupportFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+        FavoriteFragment favoriteFragment = FavoriteFragment.newInstance();
+        ft.remove(fm.findFragmentByTag(TAG_DISPLAY));
+        ft.replace(android.R.id.content, favoriteFragment, TAG_FAVORITE);
+        ft.addToBackStack(TAG_FAVORITE);
+        ft.commit();
+    }
+
     public void getPokemonData(final String name){
 
-        InputMethodManager imm = (InputMethodManager) getApplicationContext().getSystemService(Context.INPUT_METHOD_SERVICE);
-        imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+        hideKeyboard();
 
         pokeService.getPokemon(name).enqueue(new Callback<Pokemon>() {
             @Override
@@ -109,6 +127,11 @@ public class MainActivity extends AppCompatActivity implements SearchBar.SearchB
                 Toast.makeText(MainActivity.this, "Unable to fetch Pokemon", Toast.LENGTH_LONG).show();
             }
         });
+    }
+
+    private void hideKeyboard() {
+        InputMethodManager imm = (InputMethodManager) getApplicationContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
     }
 
 }

@@ -1,4 +1,4 @@
-package com.example.pokedexapi;
+package com.example.pokedexapi.View;
 
 
 import android.os.Bundle;
@@ -12,7 +12,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProviders;
 
+import com.example.pokedexapi.DB.Favorite;
+import com.example.pokedexapi.Model.Pokemon;
+import com.example.pokedexapi.Model.PokemonSpecies;
+import com.example.pokedexapi.R;
+import com.example.pokedexapi.Repository.PokeRepo;
+import com.example.pokedexapi.ViewModel.FavoriteViewModel;
 import com.squareup.picasso.Picasso;
 
 
@@ -41,9 +48,12 @@ public class PokemonDisplayFragment extends Fragment {
     TextView speedTV;
     ImageButton heartBtn;
     boolean hearted;
-
+    String mColor;
 
     PokeRepo pokeRepo;
+
+    FavoriteViewModel mFavoriteViewModel;
+    FavoriteListAdapter mFavoriteListAdapter;
 
     private static final String TAG = "Display Frag";
 
@@ -52,6 +62,12 @@ public class PokemonDisplayFragment extends Fragment {
         return fragment;
     }
 
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        mFavoriteViewModel = ViewModelProviders.of(getActivity()).get(FavoriteViewModel.class);
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -95,6 +111,14 @@ public class PokemonDisplayFragment extends Fragment {
             hearted = true;
             heartBtn.setImageResource(R.drawable.liked);
             Toast.makeText(getContext(), "Added to favorites", Toast.LENGTH_SHORT).show();
+
+            String name = nameTV.getText().toString();
+            String type = typeTV.getText().toString().substring(6);
+            String color = mColor;
+
+            Favorite favorite = new Favorite(name, type, color);
+            mFavoriteViewModel.insert(favorite);
+
         } else {
             hearted = false;
             heartBtn.setImageResource(R.drawable.notliked);
@@ -103,6 +127,7 @@ public class PokemonDisplayFragment extends Fragment {
 
 
     public void setAttributes(Pokemon pokeResponse) {
+        hearted = false;
         String name = "Name: " + pokeResponse.name;
         name = name.substring(6,7).toUpperCase() + name.substring(7);
         String types;
@@ -175,5 +200,7 @@ public class PokemonDisplayFragment extends Fragment {
         }
 
         descriptionTV.setText(description);
+
+        mColor = speciesResponse.color.name;
     }
 }

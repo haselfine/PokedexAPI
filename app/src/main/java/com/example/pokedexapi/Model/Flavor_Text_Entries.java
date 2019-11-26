@@ -1,10 +1,10 @@
-package com.example.pokedexapi;
+package com.example.pokedexapi.Model;
 
 public class Flavor_Text_Entries {
 
-    String flavor_text;
-    Language language;
-    Version version;
+    public String flavor_text;
+    public Language language;
+    public Version version;
 
     public String getFlavor_text() {
         return flavor_text;

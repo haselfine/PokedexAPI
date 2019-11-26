@@ -1,10 +1,10 @@
-package com.example.pokedexapi;
+package com.example.pokedexapi.Model;
 
 public class Ability
 {
-    private String name;
+    public String name;
 
-    private String url;
+    public String url;
 
     public String getName ()
     {

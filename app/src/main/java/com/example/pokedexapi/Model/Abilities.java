@@ -1,4 +1,4 @@
-package com.example.pokedexapi;
+package com.example.pokedexapi.Model;
 
 public class Abilities {
     public int slot;

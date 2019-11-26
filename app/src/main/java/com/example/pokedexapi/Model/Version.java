@@ -1,10 +1,8 @@
-package com.example.pokedexapi;
+package com.example.pokedexapi.Model;
 
-public class Stat {
-
+public class Version {
     public String name;
     public String url;
-
 
     public String getName() {
         return name;
@@ -24,7 +22,7 @@ public class Stat {
 
     @Override
     public String toString() {
-        return "Stat{" +
+        return "Version{" +
                 "name='" + name + '\'' +
                 ", url='" + url + '\'' +
                 '}';

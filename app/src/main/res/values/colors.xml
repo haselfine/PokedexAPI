@@ -4,4 +4,14 @@
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
     <color name="colorBackground">#FCDEB2</color>
+    <color name="favorite_list_item_background">#FFC107</color>
+    <color name="red_pokemon">#BE4C4C</color>
+    <color name="orange_pokemon">#E1E28F36</color>
+    <color name="yellow_pokemon">#E1FFC107</color>
+    <color name="green_pokemon">#E16DAD44</color>
+    <color name="blue_pokemon">#E02C92B1</color>
+    <color name="purple_pokemon">#E19C3E8D</color>
+    <color name="pink_pokemon">#E1DB92C7</color>
+    <color name="black_pokemon">#777777</color>
+    <color name="white_pokemon">#BBBBBB</color>
 </resources>

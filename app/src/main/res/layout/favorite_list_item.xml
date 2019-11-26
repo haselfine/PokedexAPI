@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/list_item_favorite_margin"
+    android:background="@drawable/favorite_background"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:textAppearance="@style/TextAppearance.AppCompat.Large">
+
+    <TextView
+        android:id="@+id/favorite_name_textView"
+        android:layout_width="355dp"
+        android:layout_height="34dp"
+        android:text="@string/name"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/favorite_type_textView"
+        app:layout_constraintStart_toStartOf="@+id/favorite_type_textView"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/favorite_type_textView"
+        android:layout_width="357dp"
+        android:layout_height="27dp"
+        android:text="@string/type"
+        app:layout_constraintBottom_toTopOf="@+id/date_created_textView"
+        app:layout_constraintStart_toStartOf="@+id/date_created_textView"
+        app:layout_constraintTop_toBottomOf="@+id/favorite_name_textView" />
+
+    <TextView
+        android:id="@+id/date_created_textView"
+        android:layout_width="358dp"
+        android:layout_height="23dp"
+        android:text="@string/date"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/favorite_type_textView" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

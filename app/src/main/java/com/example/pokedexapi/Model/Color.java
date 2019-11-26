@@ -1,6 +1,7 @@
-package com.example.pokedexapi;
+package com.example.pokedexapi.Model;
 
-public class Type {
+public class Color {
+
     public String name;
     public String url;
 
@@ -20,10 +21,9 @@ public class Type {
         this.url = url;
     }
 
-
     @Override
     public String toString() {
-        return "Type{" +
+        return "Color{" +
                 "name='" + name + '\'' +
                 ", url='" + url + '\'' +
                 '}';

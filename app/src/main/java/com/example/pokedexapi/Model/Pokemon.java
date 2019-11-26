@@ -1,16 +1,16 @@
-package com.example.pokedexapi;
+package com.example.pokedexapi.Model;
 
 import java.util.Arrays;
 
 public class Pokemon {
 
-    int id;
-    String name;
-    Types[] types;
-    int height;
-    int weight;
-    Sprites sprites;
-    Stats[] stats;
+    public Stats[] stats;
+    public int id;
+    public String name;
+    public Types[] types;
+    public int height;
+    public int weight;
+    public Sprites sprites;
 
 
     public int getId() {

@@ -1,12 +1,14 @@
-package com.example.pokedexapi;
+package com.example.pokedexapi.Repository;
 
+
+import com.example.pokedexapi.Service.PokemonService;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class PokeRepo {
 
-    PokemonService pokeService;
+    public PokemonService pokeService;
 
     private static final String url = "https://pokeapi.co/api/v2/";
 
