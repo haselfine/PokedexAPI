@@ -29,17 +29,12 @@ public class SearchBar extends Fragment implements View.OnClickListener {
 
     private static final String TAG = "SEARCH BAR FRAG";
 
-    interface SearchBarListener{
-        void searchForPokemon(String name);
-        void onFavoriteClick();
-    }
-
     public static SearchBar newInstance() {
         SearchBar searchBar = new SearchBar();
         return searchBar;
     }
 
-    private SearchBarListener mSearchListener;
+    private SearchListener mSearchListener;
 
 
     @Override
@@ -48,10 +43,10 @@ public class SearchBar extends Fragment implements View.OnClickListener {
 
         Log.d(TAG, "onAttach");
 
-        if(context instanceof SearchBarListener){
-            mSearchListener = (SearchBarListener) context;
+        if(context instanceof SearchListener){
+            mSearchListener = (SearchListener) context;
         } else {
-            throw new RuntimeException(context.toString() + " must implement SearchBarListener");
+            throw new RuntimeException(context.toString() + " must implement SearchListener");
         }
     }
 

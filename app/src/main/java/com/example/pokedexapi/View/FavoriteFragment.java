@@ -34,6 +34,8 @@ public class FavoriteFragment extends Fragment implements FavoriteListener {
 
     private FavoriteViewModel mFavoriteViewModel;
 
+    private SearchListener mSearchListener;
+
     public FavoriteFragment() {
         // Required empty public constructor
     }
@@ -81,6 +83,14 @@ public class FavoriteFragment extends Fragment implements FavoriteListener {
     @Override
     public void onAttach(Context context){
         super.onAttach(context);
+
+        Log.d(TAG, "onAttach");
+
+        if(context instanceof SearchListener){
+            mSearchListener = (SearchListener) context;
+        } else {
+            throw new RuntimeException(context.toString() + " must implement SearchListener.");
+        }
     }
 
     @Override
@@ -92,6 +102,8 @@ public class FavoriteFragment extends Fragment implements FavoriteListener {
     @Override
     public void onListClick(int position){
         Favorite favorite = mFavorites.get(position);
+        String name = favorite.getName().toLowerCase();
+        mSearchListener.searchForPokemon(name);
         //TODO send to main to begin fragment transaction with displayfragment for search
     }
 

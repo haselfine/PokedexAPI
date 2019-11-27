@@ -128,6 +128,7 @@ public class PokemonDisplayFragment extends Fragment {
 
     public void setAttributes(Pokemon pokeResponse) {
         hearted = false;
+        heartBtn.setImageResource(R.drawable.notliked);
         String name = "Name: " + pokeResponse.name;
         name = name.substring(6,7).toUpperCase() + name.substring(7);
         String types;

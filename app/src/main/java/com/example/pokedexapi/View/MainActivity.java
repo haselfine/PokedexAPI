@@ -21,7 +21,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class MainActivity extends AppCompatActivity implements SearchBar.SearchBarListener {
+public class MainActivity extends AppCompatActivity implements SearchListener{
 
     private static final String TAG_DISPLAY = "DISPLAY";
     private static final String TAG_SEARCH = "SEARCH";
@@ -57,8 +57,16 @@ public class MainActivity extends AppCompatActivity implements SearchBar.SearchB
         pokeService = pokeRepo.pokeService;
     }
 
-    @Override
     public void searchForPokemon(String name){
+        FragmentManager fm = getSupportFragmentManager();
+        FavoriteFragment favoriteFragment = (FavoriteFragment) fm.findFragmentByTag(TAG_FAVORITE);
+        SearchBar searchBar = (SearchBar) fm.findFragmentByTag(TAG_SEARCH);
+        PokemonDisplayFragment displayFragment = (PokemonDisplayFragment) fm.findFragmentByTag(TAG_DISPLAY);
+        if(favoriteFragment.isAdded()){
+            FragmentTransaction ft = fm.beginTransaction();
+            ft.remove(favoriteFragment);
+            ft.commit();
+        }
         getPokemonData(name);
     }
 
@@ -68,15 +76,15 @@ public class MainActivity extends AppCompatActivity implements SearchBar.SearchB
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
         FavoriteFragment favoriteFragment = FavoriteFragment.newInstance();
-        ft.remove(fm.findFragmentByTag(TAG_DISPLAY));
         ft.replace(android.R.id.content, favoriteFragment, TAG_FAVORITE);
         ft.addToBackStack(TAG_FAVORITE);
         ft.commit();
     }
 
+
     public void getPokemonData(final String name){
 
-        hideKeyboard();
+        //hideKeyboard();
 
         pokeService.getPokemon(name).enqueue(new Callback<Pokemon>() {
             @Override
