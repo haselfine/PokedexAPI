@@ -3,6 +3,7 @@ package com.example.pokedexapi.View;
 import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.view.Window;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
@@ -58,13 +59,18 @@ public class MainActivity extends AppCompatActivity implements SearchListener{
     }
 
     public void searchForPokemon(String name){
+        getPokemonData(name);
+    }
+
+    public void searchFromFavorites(String name){
         FragmentManager fm = getSupportFragmentManager();
         FavoriteFragment favoriteFragment = (FavoriteFragment) fm.findFragmentByTag(TAG_FAVORITE);
-        SearchBar searchBar = (SearchBar) fm.findFragmentByTag(TAG_SEARCH);
-        PokemonDisplayFragment displayFragment = (PokemonDisplayFragment) fm.findFragmentByTag(TAG_DISPLAY);
-        if(favoriteFragment.isAdded()){
+
+        if(favoriteFragment != null){
             FragmentTransaction ft = fm.beginTransaction();
             ft.remove(favoriteFragment);
+            ft.addToBackStack(TAG_SEARCH);
+            ft.addToBackStack(TAG_DISPLAY);
             ft.commit();
         }
         getPokemonData(name);
@@ -84,7 +90,7 @@ public class MainActivity extends AppCompatActivity implements SearchListener{
 
     public void getPokemonData(final String name){
 
-        //hideKeyboard();
+        hideKeyboard();
 
         pokeService.getPokemon(name).enqueue(new Callback<Pokemon>() {
             @Override
@@ -138,8 +144,9 @@ public class MainActivity extends AppCompatActivity implements SearchListener{
     }
 
     private void hideKeyboard() {
-        InputMethodManager imm = (InputMethodManager) getApplicationContext().getSystemService(Context.INPUT_METHOD_SERVICE);
-        imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+        View mainView = findViewById(android.R.id.content);
+        InputMethodManager manager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        manager.hideSoftInputFromWindow(mainView.getWindowToken(), 0);
     }
 
 }

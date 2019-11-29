@@ -103,8 +103,7 @@ public class FavoriteFragment extends Fragment implements FavoriteListener {
     public void onListClick(int position){
         Favorite favorite = mFavorites.get(position);
         String name = favorite.getName().toLowerCase();
-        mSearchListener.searchForPokemon(name);
-        //TODO send to main to begin fragment transaction with displayfragment for search
+        mSearchListener.searchFromFavorites(name);
     }
 
     @Override
