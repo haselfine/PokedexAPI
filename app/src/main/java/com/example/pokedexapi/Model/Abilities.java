@@ -1,6 +1,6 @@
 package com.example.pokedexapi.Model;
 
-public class Abilities {
+public class Abilities { //for JSON deserialization, holds abilities ( this one is actually not used in program, but could in future)
     public int slot;
     public boolean is_hidden;
     public Ability ability;

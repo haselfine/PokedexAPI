@@ -1,6 +1,6 @@
 package com.example.pokedexapi.Model;
 
-public class Stat {
+public class Stat { //statistics of Pokemon and how strong/weak they are in certain aspects
 
     public String name;
     public String url;

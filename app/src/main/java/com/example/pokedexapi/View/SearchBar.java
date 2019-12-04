@@ -44,7 +44,7 @@ public class SearchBar extends Fragment implements View.OnClickListener {
         Log.d(TAG, "onAttach");
 
         if(context instanceof SearchListener){
-            mSearchListener = (SearchListener) context;
+            mSearchListener = (SearchListener) context; //attach listener
         } else {
             throw new RuntimeException(context.toString() + " must implement SearchListener");
         }
@@ -65,20 +65,20 @@ public class SearchBar extends Fragment implements View.OnClickListener {
         return view;
     }
     @Override
-    public void onClick(View v) {
+    public void onClick(View v) { //tells buttons apart by their id
         int button = v.getId();
         switch (button){
-            case R.id.search_Button:
+            case R.id.search_Button: //if search button...
                 mPokemonName = searchET.getText().toString();
-                if(mPokemonName.isEmpty()){
-                    Toast.makeText(getContext(), "Enter a Pokemon name", Toast.LENGTH_LONG).show();
+                if(mPokemonName.isEmpty()){ //check for empty text
+                    Toast.makeText(getContext(), "Enter a Pokemon name", Toast.LENGTH_LONG).show(); //display hint to enter text
                     return;
                 }
-                mPokemonName = mPokemonName.toLowerCase();
-                mSearchListener.searchForPokemon(mPokemonName);
+                mPokemonName = mPokemonName.toLowerCase(); //convert to lowercase
+                mSearchListener.searchForPokemon(mPokemonName); //goes to search function in main activity
                 break;
-            case R.id.favorites_button:
-                mSearchListener.onFavoriteClick();
+            case R.id.favorites_button: //if favorites button...
+                mSearchListener.onFavoriteClick();  //send to response in main activity (bring up favorites fragment)
                 break;
         }
 

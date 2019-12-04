@@ -6,7 +6,7 @@ import com.example.pokedexapi.Service.PokemonService;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class PokeRepo {
+public class PokeRepo { //retrofit converts the url into gson/json, moves to service for use
 
     public PokemonService pokeService;
 

@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constraintLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBackground"
+    tools:context=".View.PokemonDisplayFragment">
+
+    <ImageView
+        android:id="@+id/sprite_imageView"
+        android:layout_width="225dp"
+        android:layout_height="225dp"
+        android:src="@android:drawable/ic_menu_gallery"
+        app:layout_constraintBottom_toTopOf="@+id/characteristic_TextView"
+        app:layout_constraintEnd_toEndOf="@+id/characteristic_TextView"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.674" />
+
+    <TextView
+        android:id="@+id/weight_TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/weight"
+        android:textSize="16sp"
+        app:fontFamily="@font/amiko"
+        app:layout_constraintBottom_toTopOf="@+id/characteristic_TextView"
+        app:layout_constraintStart_toStartOf="@+id/characteristic_TextView"
+        app:layout_constraintTop_toBottomOf="@+id/height_TextView" />
+
+    <TextView
+        android:id="@+id/height_TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/height"
+        android:textSize="16sp"
+        app:fontFamily="@font/amiko"
+        app:layout_constraintBottom_toTopOf="@+id/weight_TextView"
+        app:layout_constraintStart_toStartOf="@+id/weight_TextView"
+        app:layout_constraintTop_toBottomOf="@+id/type_TextView" />
+
+    <TextView
+        android:id="@+id/characteristic_TextView"
+        android:layout_width="339dp"
+        android:layout_height="110dp"
+        android:layout_marginStart="35dp"
+        android:layout_marginLeft="35dp"
+        android:text="@string/description"
+        android:textSize="16sp"
+        app:fontFamily="@font/amiko"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/weight_TextView" />
+
+    <TextView
+        android:id="@+id/type_TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/type"
+        android:textSize="16sp"
+        app:fontFamily="@font/amiko"
+        app:layout_constraintBottom_toTopOf="@+id/height_TextView"
+        app:layout_constraintStart_toStartOf="@+id/height_TextView"
+        app:layout_constraintTop_toBottomOf="@+id/name_TextView" />
+
+    <TextView
+        android:id="@+id/name_TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/name"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:fontFamily="@font/amiko"
+        app:layout_constraintBottom_toTopOf="@+id/type_TextView"
+        app:layout_constraintStart_toStartOf="@+id/type_TextView"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/stats_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/stats"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:fontFamily="@font/amiko"
+        app:layout_constraintStart_toStartOf="@+id/hp_textView"
+        app:layout_constraintTop_toTopOf="@+id/name_TextView" />
+
+    <ImageButton
+        android:id="@+id/heart_button"
+        android:layout_width="54dp"
+        android:layout_height="53dp"
+        android:background="@android:color/transparent"
+        android:scaleType="fitCenter"
+        android:src="@drawable/notliked"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/speed_ProgBar"
+        app:layout_constraintTop_toBottomOf="@+id/speed_ProgBar" />
+
+    <TextView
+        android:id="@+id/def_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/defense"
+        app:fontFamily="@font/amiko"
+        app:layout_constraintStart_toStartOf="@+id/spAtt_textView"
+        app:layout_constraintTop_toTopOf="@+id/def_ProgBar" />
+
+    <TextView
+        android:id="@+id/spDef_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/spDefense"
+        app:fontFamily="@font/amiko"
+        app:layout_constraintStart_toStartOf="@+id/speed_textView"
+        app:layout_constraintTop_toTopOf="@+id/spDef_ProgBar" />
+
+    <TextView
+        android:id="@+id/att_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/attack"
+        app:fontFamily="@font/amiko"
+        app:layout_constraintStart_toStartOf="@+id/def_textView"
+        app:layout_constraintTop_toTopOf="@+id/att_ProgBar" />
+
+    <ProgressBar
+        android:id="@+id/speed_ProgBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="180dp"
+        android:layout_height="18dp"
+        android:layout_marginEnd="49dp"
+        android:layout_marginRight="49dp"
+        android:layout_marginBottom="8dp"
+        android:background="#908246BB"
+        android:max="255"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spDef_ProgBar" />
+
+    <ProgressBar
+        android:id="@+id/spAtt_ProgBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="180dp"
+        android:layout_height="18dp"
+        android:layout_marginBottom="8dp"
+        android:background="#9503A9F4"
+        android:max="255"
+        app:layout_constraintBottom_toTopOf="@+id/spDef_ProgBar"
+        app:layout_constraintStart_toStartOf="@+id/spDef_ProgBar"
+        app:layout_constraintTop_toBottomOf="@+id/def_ProgBar" />
+
+    <ProgressBar
+        android:id="@+id/spDef_ProgBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="180dp"
+        android:layout_height="18dp"
+        android:layout_marginBottom="8dp"
+        android:background="#9564C34A"
+        android:max="255"
+        app:layout_constraintBottom_toTopOf="@+id/speed_ProgBar"
+        app:layout_constraintStart_toStartOf="@+id/speed_ProgBar"
+        app:layout_constraintTop_toBottomOf="@+id/spAtt_ProgBar" />
+
+    <ProgressBar
+        android:id="@+id/hp_ProgBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="180dp"
+        android:layout_height="18dp"
+        android:layout_marginBottom="8dp"
+        android:background="#94FF001E"
+        android:max="255"
+        app:layout_constraintBottom_toTopOf="@+id/att_ProgBar"
+        app:layout_constraintStart_toStartOf="@+id/att_ProgBar"
+        app:layout_constraintTop_toBottomOf="@+id/stats_textView"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <ProgressBar
+        android:id="@+id/att_ProgBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="180dp"
+        android:layout_height="18dp"
+        android:layout_marginBottom="8dp"
+        android:background="#94FF5100"
+        android:max="255"
+        app:layout_constraintBottom_toTopOf="@+id/def_ProgBar"
+        app:layout_constraintStart_toStartOf="@+id/def_ProgBar"
+        app:layout_constraintTop_toBottomOf="@+id/hp_ProgBar" />
+
+    <ProgressBar
+        android:id="@+id/def_ProgBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="180dp"
+        android:layout_height="18dp"
+        android:layout_marginBottom="8dp"
+        android:background="#95FFCE3B"
+        android:max="255"
+        app:layout_constraintBottom_toTopOf="@+id/spAtt_ProgBar"
+        app:layout_constraintStart_toStartOf="@+id/spAtt_ProgBar"
+        app:layout_constraintTop_toBottomOf="@+id/att_ProgBar" />
+
+    <TextView
+        android:id="@+id/spAtt_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/spAttack"
+        app:fontFamily="@font/amiko"
+        app:layout_constraintStart_toStartOf="@+id/spDef_textView"
+        app:layout_constraintTop_toTopOf="@+id/spAtt_ProgBar" />
+
+    <TextView
+        android:id="@+id/speed_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginLeft="24dp"
+        android:text="@string/speed"
+        app:fontFamily="@font/amiko"
+        app:layout_constraintStart_toEndOf="@+id/characteristic_TextView"
+        app:layout_constraintTop_toTopOf="@+id/speed_ProgBar" />
+
+    <TextView
+        android:id="@+id/hp_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/hp"
+        app:fontFamily="@font/amiko"
+        app:layout_constraintStart_toStartOf="@+id/att_textView"
+        app:layout_constraintTop_toTopOf="@+id/hp_ProgBar" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

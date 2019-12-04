@@ -1,6 +1,6 @@
 package com.example.pokedexapi.Model;
 
-public class Stats {
+public class Stats { //holds individual stats and their quantities
 
     public int effort;
     public int base_stat;

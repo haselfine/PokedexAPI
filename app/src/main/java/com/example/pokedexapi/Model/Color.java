@@ -1,6 +1,6 @@
 package com.example.pokedexapi.Model;
 
-public class Color {
+public class Color { //I pulled this so I could make the recycler views the same color as the pokemon, but I couldn't figure out how to make them hold
 
     public String name;
     public String url;

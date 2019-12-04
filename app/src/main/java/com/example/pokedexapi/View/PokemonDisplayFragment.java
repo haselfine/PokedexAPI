@@ -66,7 +66,7 @@ public class PokemonDisplayFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        mFavoriteViewModel = ViewModelProviders.of(getActivity()).get(FavoriteViewModel.class);
+        mFavoriteViewModel = ViewModelProviders.of(getActivity()).get(FavoriteViewModel.class); //connect to view model
     }
 
     @Override
@@ -106,53 +106,53 @@ public class PokemonDisplayFragment extends Fragment {
         return view;
     }
 
-    private void setHearted() {
-        if(!hearted){
-            hearted = true;
-            heartBtn.setImageResource(R.drawable.liked);
-            Toast.makeText(getContext(), "Added to favorites", Toast.LENGTH_SHORT).show();
+    private void setHearted() { //when user clicks heart button...
+        if(!hearted){ //if it isn't yet hearted...
+            hearted = true; //now it is hearted
+            heartBtn.setImageResource(R.drawable.liked); //changes to red icon
+            Toast.makeText(getContext(), "Added to favorites", Toast.LENGTH_SHORT).show(); //displays toast for user
 
-            String name = nameTV.getText().toString();
+            String name = nameTV.getText().toString(); //retrieves necessary info - name, type, and color
             String type = typeTV.getText().toString().substring(6);
             String color = mColor;
 
-            Favorite favorite = new Favorite(name, type, color);
-            mFavoriteViewModel.insert(favorite);
+            Favorite favorite = new Favorite(name, type, color); //sets those to favorite object
+            mFavoriteViewModel.insert(favorite); //inserts into favorite database
 
-        } else {
-            hearted = false;
-            heartBtn.setImageResource(R.drawable.notliked);
+        } else { //if it is hearted...
+            hearted = false; //now it's not
+            heartBtn.setImageResource(R.drawable.notliked); //sets to gray heart icon
         }
     }
 
 
-    public void setAttributes(Pokemon pokeResponse) {
-        hearted = false;
+    public void setAttributes(Pokemon pokeResponse) { //this is for the **pokemon** response
+        hearted = false; //assumes no pokemon is in favorites
         heartBtn.setImageResource(R.drawable.notliked);
-        String name = "Name: " + pokeResponse.name;
-        name = name.substring(6,7).toUpperCase() + name.substring(7);
-        String types;
+        String name = "Name: " + pokeResponse.name; //set name
+        name = name.substring(6,7).toUpperCase() + name.substring(7); //uppercase the pokemon's name
+        String types; //same as name but with types
         String type0 = pokeResponse.types[0].type.name;
         type0 = type0.substring(0,1).toUpperCase() + type0.substring(1);
-        if(pokeResponse.types.length > 1){
+        if(pokeResponse.types.length > 1){ //since there can be more than one type, sets to "types" with a slash between the two
             String type1 = pokeResponse.types[1].type.name;
             type1 = type1.substring(0,1).toUpperCase() + type1.substring(1);
             types = "Types:\n" + type0 + "/" +
                     type1;
-        } else {
+        } else { //otherwise it's just one type
             types = "Type: " + type0;
         }
 
-        double height = (double) pokeResponse.height / 10;
-        double weight = (double) pokeResponse.weight / 10;
+        double height = (double) pokeResponse.height / 10; //convert response to height in meters
+        double weight = (double) pokeResponse.weight / 10; //convert response to weight in kilograms
 
         String heightString = "Height: " + height +" m";
         String weightString = "Weight: " + weight + " kg";
 
         int HP = pokeResponse.stats[5].base_stat;
-        String hpString = "HP:\t\t" + HP;
+        String hpString = "HP:\t\t" + HP; //convert response to formatted string
         int attack = pokeResponse.stats[4].base_stat;
-        String attString = "Attack:\t\t" + attack;
+        String attString = "Attack:\t\t" + attack; //all stats follow the same pattern as HP
         int defense = pokeResponse.stats[3].base_stat;
         String defString = "Defense:\t\t" + defense;
         int specialAttack = pokeResponse.stats[2].base_stat;
@@ -162,7 +162,7 @@ public class PokemonDisplayFragment extends Fragment {
         int speed = pokeResponse.stats[0].base_stat;
         String speedString = "Speed:\t\t" + speed;
 
-        nameTV.setText(name);
+        nameTV.setText(name); //set display objects to formatted responses
         typeTV.setText(types);
         heightTV.setText(heightString);
         weightTV.setText(weightString);
@@ -182,26 +182,26 @@ public class PokemonDisplayFragment extends Fragment {
 
     }
 
-    public void setAttributes(PokemonSpecies speciesResponse) {
+    public void setAttributes(PokemonSpecies speciesResponse) { //this is specifically for the **pokemon species** response
         int i = 0;
         int holder = 0;
-        for(i = 0; i < speciesResponse.flavor_text_entries.length; i++){
-            if(speciesResponse.flavor_text_entries[i].language.name.equals("en")){
-                holder = i;
-                break;
+        for(i = 0; i < speciesResponse.flavor_text_entries.length; i++){ //cycles through all descriptions
+            if(speciesResponse.flavor_text_entries[i].language.name.equals("en")){ //first description that is in english
+                holder = i; //holds that number in the array
+                break; //stop loop
             }
         }
 
-        String description = speciesResponse.flavor_text_entries[holder].flavor_text;
-        description = description.replace("\n"," ");
-        if(description.length() > 200){
-            descriptionTV.setTextSize(14);
+        String description = speciesResponse.flavor_text_entries[holder].flavor_text; //takes description from first english entry
+        description = description.replace("\n"," "); //remove newlines
+        if(description.length() > 190){ //if over 190 characters
+            descriptionTV.setTextSize(14); //change font size to fit description
         } else {
-            descriptionTV.setTextSize(16);
+            descriptionTV.setTextSize(16); //otherwise default size
         }
 
         descriptionTV.setText(description);
 
-        mColor = speciesResponse.color.name;
+        mColor = speciesResponse.color.name; //hold color (not used in this version of program)
     }
 }

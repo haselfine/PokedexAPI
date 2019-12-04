@@ -24,11 +24,11 @@ public class FavoriteViewModel extends AndroidViewModel {
 
     public LiveData<List<Favorite>> getFavorites(){
         return favorites;
-    }
+    } //can return list of favorites
 
     public void insert(Favorite favorite){
         mFavRepository.insert(favorite);
-    }
+    } //add a new favorite
 
-    public void delete(Favorite favorite){mFavRepository.delete(favorite);}
+    public void delete(Favorite favorite){mFavRepository.delete(favorite);} //delete a favorite from database
 }

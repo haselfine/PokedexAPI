@@ -1,6 +1,6 @@
 package com.example.pokedexapi.Model;
 
-public class Growth_Rate {
+public class Growth_Rate { //this is also not used in the program at the moment
 
     public String name;
     public String url;

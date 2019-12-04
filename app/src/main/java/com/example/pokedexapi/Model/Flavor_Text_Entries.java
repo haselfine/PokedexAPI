@@ -1,6 +1,6 @@
 package com.example.pokedexapi.Model;
 
-public class Flavor_Text_Entries {
+public class Flavor_Text_Entries { //this is the description on the display fragment
 
     public String flavor_text;
     public Language language;

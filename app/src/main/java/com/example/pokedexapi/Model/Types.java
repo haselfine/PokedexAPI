@@ -1,6 +1,6 @@
 package com.example.pokedexapi.Model;
 
-public class Types
+public class Types //holds individual type
 {
     public String slot;
 

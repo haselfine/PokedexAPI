@@ -1,6 +1,6 @@
 package com.example.pokedexapi.Model;
 
-public class Version {
+public class Version { //this is also not used in this program
     public String name;
     public String url;
 

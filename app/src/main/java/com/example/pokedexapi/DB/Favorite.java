@@ -10,13 +10,13 @@ import java.util.Date;
 @Entity
 public class Favorite implements Comparable<Favorite>{
 
+    int id; //this is not used since I switched to having the name be the primary key
     @NonNull
-    @PrimaryKey(autoGenerate = true)
-    int id;
-    String name;
-    Date date;
-    String type;
-    String color;
+    @PrimaryKey(autoGenerate = false)
+    String name; //name is primary key as each pokemon has one name, and I don't want to allow duplicates
+    Date date; //date to show when the user added this pokemon to their favorites
+    String type; //each pokemon has a type which is useful for displaying
+    String color; //this is here because I wanted to make the recycler view items the same color as the pokemon, but I had issues implementing that (colors jumped around)
 
     @Ignore
     public Favorite(String name, String type, String color) {

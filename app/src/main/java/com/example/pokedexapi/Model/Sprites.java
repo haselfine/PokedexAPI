@@ -1,6 +1,6 @@
 package com.example.pokedexapi.Model;
 
-public class Sprites
+public class Sprites //picture of pokemon
 {
     public String back_shiny_female;
     public String back_female;

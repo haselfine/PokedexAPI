@@ -1,6 +1,6 @@
 package com.example.pokedexapi.Model;
 
-public class Ability
+public class Ability //not used in program, could in future
 {
     public String name;
 

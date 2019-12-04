@@ -2,7 +2,7 @@ package com.example.pokedexapi.Model;
 
 import java.util.Arrays;
 
-public class Pokemon {
+public class Pokemon { //main class/object, holds 90% of the information I'm looking for
 
     public Stats[] stats;
     public int id;

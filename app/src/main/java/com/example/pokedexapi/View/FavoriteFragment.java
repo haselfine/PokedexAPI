@@ -25,9 +25,9 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class FavoriteFragment extends Fragment implements FavoriteListener {
+public class FavoriteFragment extends Fragment implements FavoriteListener { //displays list of saved favorites for easier searches
 
-    private static final String TAG = "Favorite Fragment";
+    private static final String TAG = "Favorite Fragment"; //tag for log data
     private List<Favorite> mFavorites;
 
     private FavoriteListAdapter mFavoriteListAdapter;
@@ -49,16 +49,16 @@ public class FavoriteFragment extends Fragment implements FavoriteListener {
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
 
-        mFavoriteViewModel = ViewModelProviders.of(getActivity()).get(FavoriteViewModel.class);
+        mFavoriteViewModel = ViewModelProviders.of(getActivity()).get(FavoriteViewModel.class); //use viewmodel to interact with data in database
 
 
         mFavoriteViewModel.getFavorites().observe(this, new Observer<List<Favorite>>() {
             @Override
-            public void onChanged(List<Favorite> favorites) {
+            public void onChanged(List<Favorite> favorites) { //observe changes
                 Log.d(TAG, "Favorites changed: " + favorites);
                 FavoriteFragment.this.mFavorites = favorites;
-                FavoriteFragment.this.mFavoriteListAdapter.setFavorites(favorites);
-                FavoriteFragment.this.mFavoriteListAdapter.notifyDataSetChanged();
+                FavoriteFragment.this.mFavoriteListAdapter.setFavorites(favorites); //set updated list data to recycler view
+                FavoriteFragment.this.mFavoriteListAdapter.notifyDataSetChanged(); //tell adapter there's a new dataset
             }
         });
 
@@ -87,7 +87,7 @@ public class FavoriteFragment extends Fragment implements FavoriteListener {
         Log.d(TAG, "onAttach");
 
         if(context instanceof SearchListener){
-            mSearchListener = (SearchListener) context;
+            mSearchListener = (SearchListener) context; //listener attach
         } else {
             throw new RuntimeException(context.toString() + " must implement SearchListener.");
         }
@@ -101,23 +101,23 @@ public class FavoriteFragment extends Fragment implements FavoriteListener {
 
     @Override
     public void onListClick(int position){
-        Favorite favorite = mFavorites.get(position);
-        String name = favorite.getName().toLowerCase();
-        mSearchListener.searchFromFavorites(name);
+        Favorite favorite = mFavorites.get(position); //find which element was clicked
+        String name = favorite.getName().toLowerCase(); //convert name to lowercase for search
+        mSearchListener.searchFromFavorites(name); //send search to main activity/change to display fragment
     }
 
     @Override
     public void onListLongClick(final int position){
-        final Favorite favorite = mFavorites.get(position);
+        final Favorite favorite = mFavorites.get(position); //find which element was clicked
 
-        AlertDialog confirmDeleteDialog = new AlertDialog.Builder(getActivity())
+        AlertDialog confirmDeleteDialog = new AlertDialog.Builder(getActivity()) //confirm delete
                 .setMessage(getString(R.string.delete_favorite_message, favorite.getName()))
                 .setTitle("Delete Favorite?")
                 .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        mFavoriteViewModel.delete(favorite);
-                        mFavoriteListAdapter.notifyItemRemoved(position);
+                        mFavoriteViewModel.delete(favorite); //if yes, delete from database
+                        mFavoriteListAdapter.notifyItemRemoved(position); //remove from recyclerview
                     }
                 })
                 .setNegativeButton(android.R.string.cancel, null)

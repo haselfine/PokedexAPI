@@ -17,17 +17,17 @@ public interface FavDAO {
     LiveData<List<Favorite>> getAllFavs();
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    void insert(Favorite... favorites);
+    void insert(Favorite... favorites); //add new favorite to db
 
     @Update
-    void update(Favorite favorite);
+    void update(Favorite favorite); //This is not used
 
     @Update
     void update(Favorite... favorites); //allows update to all rows
 
     @Delete
-    void delete(Favorite favorite);
+    void delete(Favorite favorite); //delete favorite from db
 
-    @Query("DELETE FROM favorite WHERE id = :id")
+    @Query("DELETE FROM favorite WHERE id = :id") //this is not used
     void delete(int id);
 }

@@ -1,6 +1,6 @@
 package com.example.pokedexapi.Model;
 
-public class Type {
+public class Type { //differentiates the pokemon and their main qualities (plants = grass, fire types can emit fire, etc.)
     public String name;
     public String url;
 

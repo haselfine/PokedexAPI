@@ -2,11 +2,11 @@ package com.example.pokedexapi.Model;
 
 import java.util.Arrays;
 
-public class PokemonSpecies {
+public class PokemonSpecies { //this holds the other 10% of data I'm looking for
 
-    public Flavor_Text_Entries[] flavor_text_entries;
-    public Growth_Rate growth_rate;
-    public Color color;
+    public Flavor_Text_Entries[] flavor_text_entries; //description
+    public Growth_Rate growth_rate; //not used
+    public Color color; //color, would like to use in future
 
     public Flavor_Text_Entries[] getFlavor_text_entries() {
         return flavor_text_entries;

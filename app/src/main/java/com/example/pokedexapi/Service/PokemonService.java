@@ -7,7 +7,7 @@ import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
 
-public interface PokemonService {
+public interface PokemonService { //calls API from user input pokemon "name"
 
     @GET("pokemon/{name}")
     Call<Pokemon> getPokemon(@Path("name") String name);

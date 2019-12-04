@@ -3,8 +3,8 @@
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
-    <color name="colorBackground">#FCDEB2</color>
-    <color name="favorite_list_item_background">#FFC107</color>
+    <color name="colorBackground">#FDE1B7</color>
+    <color name="favorite_list_item_background">#87CCBB</color>
     <color name="red_pokemon">#BE4C4C</color>
     <color name="orange_pokemon">#E1E28F36</color>
     <color name="yellow_pokemon">#E1FFC107</color>

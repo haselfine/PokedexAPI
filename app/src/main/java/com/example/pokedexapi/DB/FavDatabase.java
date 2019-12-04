@@ -9,19 +9,20 @@ import androidx.room.TypeConverters;
 
 @Database(entities = {Favorite.class}, version = 1, exportSchema = false)
 @TypeConverters({Converters.class})
-public abstract class FavDatabase extends RoomDatabase { //uses roomdatabase to define water database
+public abstract class FavDatabase extends RoomDatabase { //stores favorites in a room database
 
 
     public static volatile FavDatabase INSTANCE;
 
     public abstract FavDAO favDAO();
 
+
     static FavDatabase getDatabase(final Context context){
         if (INSTANCE == null){
             synchronized (FavDatabase.class){
                 if (INSTANCE == null){
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
-                            FavDatabase.class, "favorite").build();
+                            FavDatabase.class, "favorites").build(); //table named "favorites"
                 }
             }
         }

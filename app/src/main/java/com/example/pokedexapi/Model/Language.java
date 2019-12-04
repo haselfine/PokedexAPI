@@ -1,6 +1,6 @@
 package com.example.pokedexapi.Model;
 
-public class Language {
+public class Language { //this allows me to make sure the description is in English
 
     public String name;
     public String url;

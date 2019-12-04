@@ -64,7 +64,7 @@ public class FavoriteListAdapter extends RecyclerView.Adapter<FavoriteListAdapte
         private TextView favName;
         private TextView favDateAdded;
         private TextView favType;
-        private Drawable favBackground;
+        private Drawable favBackground; //this was to change the color of the recycler view items to the pokemon's color
 
         public FavoriteViewHolder(@NonNull View itemView){
             super(itemView);
@@ -81,23 +81,23 @@ public class FavoriteListAdapter extends RecyclerView.Adapter<FavoriteListAdapte
 
         @Override
         public void onClick(View view){
-            mListener.onListClick(getAdapterPosition());
+            mListener.onListClick(getAdapterPosition()); //send position to favorite fragment
         }
 
         @Override
         public boolean onLongClick(View view){
-            mListener.onListLongClick(getAdapterPosition());
+            mListener.onListLongClick(getAdapterPosition()); //send position to favorite fragment
             return true;
         }
 
         void bind(Favorite favorite){
             Log.d(TAG, "binding favorite " + favorite);
             if(favorite == null){
-                favName.setText("");
+                favName.setText(""); //if somehow it gets a null item, sets text to empty
                 favDateAdded.setText("");
                 favType.setText("");
             } else {
-                favName.setText(favorite.getName());
+                favName.setText(favorite.getName()); //sets to info in database
                 favDateAdded.setText(favorite.getDate().toString());
                 favType.setText(favorite.getType());
 
